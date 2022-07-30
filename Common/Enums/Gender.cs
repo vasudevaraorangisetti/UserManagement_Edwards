@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserManagement_Console
+namespace UserManagement.Shared
 {
-    class Program
+    public enum Gender
     {
-        static void Main(string[] args)
-        {
-        }
+        Unknown = 0,
+        Male = 1,
+        Female = 2
     }
 }

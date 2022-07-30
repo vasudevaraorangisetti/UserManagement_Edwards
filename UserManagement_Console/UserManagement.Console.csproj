@@ -7,8 +7,8 @@
     <ProjectGuid>{2705E12A-5FF4-45A3-A004-4A1585C39425}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserManagement_Console</RootNamespace>
-    <AssemblyName>UserManagement_Console</AssemblyName>
+    <RootNamespace>UserManagement.Console</RootNamespace>
+    <AssemblyName>UserManagement.Console</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -67,12 +67,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Controllers\BaseAPIController.cs" />
+    <Compile Include="Startup\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup\Startup.cs" />
+    <Compile Include="Controllers\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\UserManagement.Shared.csproj">
+      <Project>{a1078eea-f5d1-44b2-8204-c453600fc7da}</Project>
+      <Name>UserManagement.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManagement.BusinessLogic\UserManagement.BusinessLogic.csproj">
+      <Project>{ed37db5d-cb82-4b7a-83cc-cfdfc5f16b08}</Project>
+      <Name>UserManagement.BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
