@@ -10,7 +10,7 @@ namespace UserManagement.Shared
     {
         public static string BaseAddress = "http://localhost:9000/";
 
-        public static int MaxUserId = 1;
+        public static int MaxUserId = 0;
 
         public static string DirectoryLocation = @"C:\UserManagement_Edwards";
 

@@ -28,7 +28,7 @@ namespace UserManagement.BusinessLogic
             var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
             if (userIndex >= 0)
             {
-                userList[userIndex] = user;
+                return Update(user);
             }
             else
             {
@@ -48,8 +48,21 @@ namespace UserManagement.BusinessLogic
         public Response Update(User user)
         {
             var userList = ReadUserData();
-            var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
-            userList[userIndex] = user;
+            var existingUser = userList.SingleOrDefault(u => u.UserId == user.UserId);
+            if (existingUser != null)
+            {
+                existingUser.FirstName = user.FirstName;
+                existingUser.LastName = user.LastName;
+                existingUser.CreatedOn = existingUser.CreatedOn;
+                existingUser.LastUpdatedOn = user.LastUpdatedOn;
+                existingUser.Gender = user.Gender;
+                existingUser.EmailAddress = user.EmailAddress;
+                existingUser.UserNotes = user.UserNotes;
+            }
+            else
+            {
+                return null;
+            }
 
             WriteUserData(userList);
             return new Response
@@ -62,10 +75,16 @@ namespace UserManagement.BusinessLogic
         {
             var userList = ReadUserData();
             var userIndex = userList.FindIndex(u => u.UserId == id);
-            userList.RemoveAt(userIndex);
+            if (userIndex >= 0)
+            {
+                userList.RemoveAt(userIndex);
 
-            WriteUserData(userList);
-
+                WriteUserData(userList);
+            }
+            else
+            {
+                return null;
+            }
             return new Response
             {
                 Status = System.Net.HttpStatusCode.OK

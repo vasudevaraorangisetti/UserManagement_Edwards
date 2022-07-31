@@ -15,5 +15,6 @@ namespace UserManagement.Shared
         public Gender Gender { get; set; }
         public string UserNotes { get; set; }
         public string CreatedOn { get; set; }
+        public string LastUpdatedOn { get; set; }
     }
 }
