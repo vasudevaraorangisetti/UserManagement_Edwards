@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Common;
 
-namespace UserManagement.Tests
+namespace UserManagement.UnitTests
 {
     public class UserMockData
     {

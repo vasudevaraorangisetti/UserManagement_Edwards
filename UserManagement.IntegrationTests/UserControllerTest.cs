@@ -1,19 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using UserManagement.Common;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace UserManagement.Tests
+namespace UserManagement.IntegrationTests
 {
-    //[TestFixture]
-    public class UserTest
+    [TestFixture]
+    public class UserControllerTest
     {
-        /*
         HttpClient client = null;
 
         [SetUp, Order(0)]
@@ -32,7 +29,7 @@ namespace UserManagement.Tests
             var response = client.GetAsync("api/User").Result;
             var jsonString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<User>>(jsonString);
-            Assert.AreEqual(0,result.Count);
+            Assert.AreEqual(0, result.Count);
 
         }
 
@@ -49,7 +46,7 @@ namespace UserManagement.Tests
         {
             var users = UserMockData.GetUserListForInsert();
             HttpResponseMessage response = null;
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 response = await client.PostAsJsonAsync("api/User", user);
             }
@@ -108,7 +105,7 @@ namespace UserManagement.Tests
         [Test, Order(9)]
         public async Task Return_Success_Delete_User_Data()
         {
-            var response = client.PostAsync("api/User/4", null).Result;
+            var response = await client.PostAsync("api/User/4", null);
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
@@ -120,7 +117,5 @@ namespace UserManagement.Tests
             var result = JsonConvert.DeserializeObject<Response>(jsonString);
             Assert.IsNull(result);
         }
-        */
-        
     }
 }

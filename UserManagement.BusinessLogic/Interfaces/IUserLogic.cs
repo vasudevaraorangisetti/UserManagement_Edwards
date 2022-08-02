@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UserManagement.Shared;
+using UserManagement.Common;
 
 namespace UserManagement.BusinessLogic
 {

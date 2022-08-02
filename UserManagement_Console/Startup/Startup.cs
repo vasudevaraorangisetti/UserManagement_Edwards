@@ -1,6 +1,6 @@
 ﻿using System;
 using Owin;
-using System.Web.Http; 
+using System.Web.Http;
 
 namespace UserManagement.Console
 {
@@ -17,6 +17,7 @@ namespace UserManagement.Console
             );
 
             appBuilder.UseWebApi(config);
-        } 
+        }
+ 
     }
 }

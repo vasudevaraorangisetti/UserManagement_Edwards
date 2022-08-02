@@ -3,7 +3,8 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Text;
 using System.Linq;
-using UserManagement.Shared;
+using UserManagement.Common;
+using System;
 
 
 
@@ -23,22 +24,27 @@ namespace UserManagement.BusinessLogic
 
         public Response Insert(User user)
         {
-
-            var userList = ReadUserData();
-            var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
-            if (userIndex >= 0)
+            try
             {
-                return Update(user);
+                var userList = ReadUserData();
+                var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
+                if (userIndex >= 0)
+                {
+                    return Update(user);
+                }
+                else
+                {
+                    userList.Add(user);
+                }
+
+
+                WriteUserData(userList);
+                Constants.MaxUserId += 1;
+
             }
-            else
+            catch(Exception ex)
             {
-                userList.Add(user);
             }
-
-
-            WriteUserData(userList);
-            Constants.MaxUserId += 1;
-
             return new Response
             {
                 Status = System.Net.HttpStatusCode.OK

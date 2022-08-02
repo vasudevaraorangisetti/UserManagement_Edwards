@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserManagement.Shared
+namespace UserManagement.Common
 {
     public class Response
     {

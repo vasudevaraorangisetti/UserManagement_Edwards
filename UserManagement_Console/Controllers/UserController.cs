@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using UserManagement.Shared;
+using UserManagement.Common;
 using UserManagement.BusinessLogic;
 
 namespace UserManagement.Console
 {
     public class UserController : BaseAPIController
     {
-        private UserLogic _userLogic;
+        private IUserLogic _userLogic;
         public UserController()
         {
             _userLogic = UserLogic;

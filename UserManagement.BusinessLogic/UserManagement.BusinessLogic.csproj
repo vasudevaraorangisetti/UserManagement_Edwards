@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\UserManagement.Shared.csproj">
+    <ProjectReference Include="..\Common\UserManagement.Common.csproj">
       <Project>{a1078eea-f5d1-44b2-8204-c453600fc7da}</Project>
-      <Name>UserManagement.Shared</Name>
+      <Name>UserManagement.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
