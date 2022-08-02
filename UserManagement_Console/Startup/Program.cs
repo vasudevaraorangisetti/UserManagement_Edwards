@@ -1,9 +1,9 @@
-﻿using Microsoft.Owin.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Owin.Hosting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Common;
 
@@ -13,11 +13,10 @@ namespace UserManagement.Console
     {
         static void Main(string[] args)
         {
-            // Start OWIN host 
             using (WebApp.Start<Startup>(url: Common.Constants.BaseAddress))
             {
-                UserManagement_Call().Wait();
                 System.Console.WriteLine("Web API Server running");
+                UserManagement_Call().Wait();
                 System.Console.ReadLine();
             }
         }

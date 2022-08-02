@@ -1,6 +1,8 @@
 ﻿using System;
 using Owin;
 using System.Web.Http;
+using Microsoft.Extensions.DependencyInjection;
+using UserManagement.BusinessLogic;
 
 namespace UserManagement.Console
 {
@@ -18,6 +20,5 @@ namespace UserManagement.Console
 
             appBuilder.UseWebApi(config);
         }
- 
     }
 }
