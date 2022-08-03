@@ -5,17 +5,21 @@ using UserManagement.Common;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using UserManagement.Console;
+using Microsoft.Owin.Hosting;
 
 namespace UserManagement.IntegrationTests
 {
     [TestFixture]
     public class UserControllerTest
     {
-        HttpClient client = null;
+        private IDisposable _server;
+        private HttpClient client;
 
         [SetUp, Order(0)]
         public void SetUp()
         {
+            _server = WebApp.Start<Startup>(Common.Constants.BaseAddress);
             client = new HttpClient();
             client.BaseAddress = new Uri(Common.Constants.BaseAddress);
             client.DefaultRequestHeaders.Accept.Clear();
@@ -76,7 +80,7 @@ namespace UserManagement.IntegrationTests
         [Test, Order(6)]
         public async Task Return_Empty_User_DataSet_Valid()
         {
-            var response = client.GetAsync("api/User/5").Result;
+            var response = client.GetAsync("api/User/0").Result;
             var jsonString = await response.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<User>(jsonString);
             Assert.IsNull(user);
@@ -116,6 +120,12 @@ namespace UserManagement.IntegrationTests
             var jsonString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Response>(jsonString);
             Assert.IsNull(result);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _server.Dispose();
         }
     }
 }

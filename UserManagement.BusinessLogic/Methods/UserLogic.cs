@@ -24,27 +24,21 @@ namespace UserManagement.BusinessLogic
 
         public Response Insert(User user)
         {
-            try
+            var userList = ReadUserData();
+            var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
+            if (userIndex >= 0)
             {
-                var userList = ReadUserData();
-                var userIndex = userList.FindIndex(u => u.UserId == user.UserId);
-                if (userIndex >= 0)
-                {
-                    return Update(user);
-                }
-                else
-                {
-                    userList.Add(user);
-                }
-
-
-                WriteUserData(userList);
-                Constants.MaxUserId += 1;
-
+                return Update(user);
             }
-            catch(Exception ex)
+            else
             {
+                userList.Add(user);
             }
+
+
+            WriteUserData(userList);
+            Constants.MaxUserId += 1;
+
             return new Response
             {
                 Status = System.Net.HttpStatusCode.OK
